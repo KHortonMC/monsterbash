@@ -1,4 +1,4 @@
-package gametemplate.graphics;
+package monsterbash.graphics;
 
 import javafx.scene.canvas.GraphicsContext;
 

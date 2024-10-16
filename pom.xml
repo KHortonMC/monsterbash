@@ -7,7 +7,7 @@
     <groupId>com.gametemplate</groupId>
     <artifactId>gametemplate</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>gametemplate</name>
+    <name>monsterbash</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -69,7 +69,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.gametemplate.gametemplate/com.gametemplate.gametemplate.HelloApplication
+                            <mainClass>com.monsterbash.gametemplate/com.monsterbash.monsterbash.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

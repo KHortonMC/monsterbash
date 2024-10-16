@@ -1,11 +1,7 @@
-package gametemplate;
+package monsterbash;
 
-import gametemplate.gameobject.BouncingBall;
-import gametemplate.gameobject.GameObject;
-import gametemplate.gameobject.MaxObjectsException;
-import gametemplate.gameobject.StaticBrick;
-import gametemplate.graphics.Rect;
-import gametemplate.graphics.Vector2;
+import monsterbash.gameobject.GameObject;
+import monsterbash.graphics.Vector2;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +26,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("gametemplate.fxml"));
-        primaryStage.setTitle("Side Scroller");
+        primaryStage.setTitle("Monster Bash!");
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -62,14 +58,8 @@ public class Main extends Application {
         gameLoop.start();
     }
 
-    private void buildObjects() throws MaxObjectsException {
-        try {
-            new BouncingBall();
-            new StaticBrick(new Rect(20,400,300,10));
-            new StaticBrick(new Rect(400,200,200,30));
-        } catch (MaxObjectsException e) {
-            throw new MaxObjectsException("Increase MAX_OBJECTS");
-        }
+    private void buildObjects() {
+        MonsterBash.buildCards();
     }
 
     private void handleKeyPress(KeyEvent event) {
@@ -115,7 +105,6 @@ public class Main extends Application {
         // Create a Canvas for drawing
         Main.canvas = new Canvas(800, 600);
         Main.screenDelta = new Vector2(0,0);
-        GameObject.initialize();
         launch(args);
     }
 

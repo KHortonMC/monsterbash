@@ -1,10 +1,10 @@
-module com.gametemplate.gametemplate {
+module com.monsterbash.monsterbash {
     requires javafx.controls;
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
 
-    opens gametemplate to javafx.fxml;
-    exports gametemplate;
+    opens monsterbash to javafx.fxml;
+    exports monsterbash;
 }

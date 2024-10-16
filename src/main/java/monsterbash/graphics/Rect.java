@@ -1,4 +1,4 @@
-package gametemplate.graphics;
+package monsterbash.graphics;
 
 public final class Rect {
     double x = 0.0;
@@ -35,6 +35,9 @@ public final class Rect {
     public void setY(double y) { this.y = y; }
     public void setW(double w) { this.w = w; }
     public void setH(double h) { this.h = h; }
+
+    public double getCenterX() { return this.x + this.w/2; }
+    public double getCenterY() { return this.y + this.h/2; }
 
     public enum Collision {
         NONE,

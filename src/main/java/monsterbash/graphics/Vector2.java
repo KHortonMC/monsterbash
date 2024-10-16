@@ -1,9 +1,11 @@
-package gametemplate.graphics;
+package monsterbash.graphics;
 
 public final class Vector2 {
     double x = 0.0;
     double y = 0.0;
-    
+
+    static final public Vector2 ZERO = new Vector2(0.0, 0.0);
+
     public Vector2() {
 
     }
