@@ -46,7 +46,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        buildObjects();
+        MonsterBash.setupGame();
 
         AnimationTimer gameLoop = new AnimationTimer() {
             @Override
@@ -56,10 +56,6 @@ public class Main extends Application {
             }
         };
         gameLoop.start();
-    }
-
-    private void buildObjects() {
-        MonsterBash.buildCards();
     }
 
     private void handleKeyPress(KeyEvent event) {
