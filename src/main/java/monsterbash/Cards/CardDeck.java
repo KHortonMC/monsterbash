@@ -1,4 +1,4 @@
-package monsterbash;
+package monsterbash.Cards;
 
 import java.util.LinkedList;
 
@@ -11,7 +11,7 @@ public abstract class CardDeck {
         // TODO: some shuffle logic
     }
 
-    GameCard draw() {
+    public GameCard drawCard() {
         GameCard retVal = cardDeck.getFirst();
         cardDeck.removeFirst();
         return retVal;

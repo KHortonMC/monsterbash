@@ -1,5 +1,6 @@
 package monsterbash;
 
+import monsterbash.Board.MonsterBash;
 import monsterbash.gameobject.GameObject;
 import monsterbash.graphics.Vector2;
 import javafx.animation.AnimationTimer;
@@ -15,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
     static Canvas canvas = null;
     static Vector2 screenDelta = null;
     public static double getWindowWidth() { return Main.canvas.getWidth(); }
@@ -42,7 +42,7 @@ public class Main extends Application {
         root.getChildren().add(textArea);
 
         // Set up the Scene
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, MonsterBash.boardWidth, MonsterBash.boardHeight);
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -99,7 +99,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         // Create a Canvas for drawing
-        Main.canvas = new Canvas(800, 600);
+        Main.canvas = new Canvas(MonsterBash.boardWidth, MonsterBash.boardHeight);
         Main.screenDelta = new Vector2(0,0);
         launch(args);
     }

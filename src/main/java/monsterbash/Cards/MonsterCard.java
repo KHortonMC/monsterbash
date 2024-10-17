@@ -1,4 +1,4 @@
-package monsterbash;
+package monsterbash.Cards;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import monsterbash.gameobject.GameObject;
-import monsterbash.graphics.Rect;
+import monsterbash.Board.MonsterBash;
+import monsterbash.Board.MonsterStats;
 
 public class MonsterCard extends GameCard {
     MonsterStats stats = null;
@@ -33,7 +33,7 @@ public class MonsterCard extends GameCard {
     void fillContents(GraphicsContext gc) {
         gc.setFill(Color.GREEN);
         gc.fillRect(0, 0, getBounding().getW(), getBounding().getH());
-        gc.drawImage(image, borderPadding, borderPadding, MonsterBash.cardWidth - (borderPadding*2), MonsterBash.cardHeight - (borderPadding*2));
+        gc.drawImage(image, borderPadding, borderPadding, GameCard.cardWidth - (borderPadding*2), GameCard.cardHeight - (borderPadding*2));
         gc.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, MonsterBash.fontSize));
         gc.setFill(Color.RED);
         gc.fillText(name, 0, 0 + getBounding().getH());

@@ -1,8 +1,9 @@
-package monsterbash;
+package monsterbash.Board;
 
 public class MonsterBash {
-    public static final double cardWidth = 100;
-    public static final double cardHeight = 150;
+    public static double boardWidth = 800;
+    public static double boardHeight = 600;
+
     public static final int fontSize = 10;
 
     static MonsterBoard board = null;

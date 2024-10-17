@@ -1,6 +1,6 @@
-package monsterbash;
+package monsterbash.Cards;
 
-import java.util.LinkedList;
+import monsterbash.Board.MonsterStats;
 
 public class MonsterDeck extends CardDeck {
     private void createCard(String name, MonsterStats stats) {

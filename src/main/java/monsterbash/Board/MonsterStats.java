@@ -1,4 +1,4 @@
-package monsterbash;
+package monsterbash.Board;
 
 public final class MonsterStats {
     public int attack = 0;

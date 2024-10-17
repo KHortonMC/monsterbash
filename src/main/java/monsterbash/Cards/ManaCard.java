@@ -1,11 +1,11 @@
-package monsterbash;
+package monsterbash.Cards;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import monsterbash.Board.MonsterBash;
 
 public class ManaCard extends GameCard {
     public enum Suit {
@@ -53,8 +53,8 @@ public class ManaCard extends GameCard {
     void fillContents(GraphicsContext gc) {
         gc.setFill(Color.GREEN);
         gc.fillRect(0, 0, getBounding().getW(), getBounding().getH());
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, MonsterBash.fontSize));
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, MonsterBash.fontSize*3));
         gc.setFill(Color.BLUE);
-        gc.fillText(this.toString(), getBounding().getW() / 2, getBounding().getH() / 2);
+        gc.fillText(this.toString(), 0, getBounding().getH() / 2);
     }
 }

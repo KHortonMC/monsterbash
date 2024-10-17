@@ -1,6 +1,4 @@
-package monsterbash;
-
-import java.util.LinkedList;
+package monsterbash.Cards;
 
 public class ManaDeck extends CardDeck {
     @Override
@@ -8,7 +6,6 @@ public class ManaDeck extends CardDeck {
         for (ManaCard.Suit suit : ManaCard.Suit.values()) {
             for (int value = 1; value < 14; value++) {
                 ManaCard card = new ManaCard(value, suit);
-                card.setVisible(false);
                 cardDeck.add(card);
             }
         }
