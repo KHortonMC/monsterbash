@@ -28,9 +28,15 @@ public abstract class GameCard extends GameObject {
 
         gc.save();
 
+        // move to our screen location
         gc.translate(this.getPosition().getX(), this.getPosition().getY());
-        gc.rotate(this.rotation);
 
+        // move to our card's center, then rotate, then return to our origin
+        gc.translate(GameCard.cardWidth / 2.0, GameCard.cardHeight / 2.0);
+        gc.rotate(this.rotation);
+        gc.translate(-GameCard.cardWidth / 2.0, -GameCard.cardHeight / 2.0);
+
+        // this is where our inherited types will fill in the contents
         fillContents(gc);
 
         gc.restore();

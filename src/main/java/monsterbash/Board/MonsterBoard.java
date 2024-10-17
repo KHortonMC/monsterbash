@@ -6,9 +6,16 @@ import monsterbash.Cards.ManaDeck;
 import monsterbash.Cards.MonsterCard;
 import monsterbash.Cards.MonsterDeck;
 import monsterbash.gameobject.GameObject;
+import monsterbash.graphics.Rect;
 import monsterbash.graphics.Vector2;
 
 public class MonsterBoard extends GameObject {
+    static Rect playerMonsterArea = new Rect(MonsterBash.boardWidth*0.1, MonsterBash.boardHeight * 0.55, MonsterBash.boardWidth * 0.7, MonsterBash.boardHeight*0.2);
+    static Rect enemyMonsterArea = new Rect(MonsterBash.boardWidth*0.1, MonsterBash.boardHeight * 0.22, MonsterBash.boardWidth * 0.7, MonsterBash.boardHeight*0.2);
+    static Rect playerManaArea = new Rect(MonsterBash.boardWidth*0.05, MonsterBash.boardHeight * 0.78, MonsterBash.boardWidth * 0.7, MonsterBash.boardHeight*0.2);
+    static Rect enemyManaArea = new Rect(MonsterBash.boardWidth*0.05, MonsterBash.boardHeight * 0.0, MonsterBash.boardWidth * 0.7, MonsterBash.boardHeight*0.2);
+    static Rect draftMonsterArea = new Rect(MonsterBash.boardWidth*0.85, MonsterBash.boardHeight * 0.1, MonsterBash.boardWidth * 0.2, MonsterBash.boardHeight*0.8);
+
 
     MonsterCard[] draftMonsters = new MonsterCard[5];
     MonsterCard[] playerMonsters = new MonsterCard[5];
@@ -39,7 +46,7 @@ public class MonsterBoard extends GameObject {
                 playerMana[i].setActive(true);
             }
             playerMana[i].setRotation(0);
-            Vector2 drawPos = new Vector2(((MonsterCard.cardWidth) * i)+ i*5, 450);
+            Vector2 drawPos = new Vector2(playerManaArea.getX() + ((MonsterCard.cardWidth) * i)+ i*5, playerManaArea.getY());
             playerMana[i].setPosition(drawPos);
         }
     }
@@ -52,7 +59,7 @@ public class MonsterBoard extends GameObject {
                 enemyMana[i].setActive(true);
             }
             enemyMana[i].setRotation(180);
-            Vector2 drawPos = new Vector2(((MonsterCard.cardWidth) * i)+ i*5, 50);
+            Vector2 drawPos = new Vector2(enemyManaArea.getX() + ((MonsterCard.cardWidth) * i)+ i*5, enemyManaArea.getY());
             enemyMana[i].setPosition(drawPos);
         }
     }
@@ -66,7 +73,7 @@ public class MonsterBoard extends GameObject {
             }
 
             draftMonsters[i].setRotation(90);
-            Vector2 drawPos = new Vector2(750, 50 + ((MonsterCard.cardWidth) * i));
+            Vector2 drawPos = new Vector2(draftMonsterArea.getX(), draftMonsterArea.getY() + ((MonsterCard.cardWidth) * i) + i*5);
             draftMonsters[i].setPosition(drawPos);
         }
     }
@@ -80,7 +87,7 @@ public class MonsterBoard extends GameObject {
             }
 
             playerMonsters[i].setRotation(0);
-            Vector2 drawPos = new Vector2(50 + ((MonsterCard.cardWidth) * i), 350);
+            Vector2 drawPos = new Vector2(playerMonsterArea.getX() + ((MonsterCard.cardWidth) * i)+ i*5, playerMonsterArea.getY());
             playerMonsters[i].setPosition(drawPos);
         }
     }
@@ -94,7 +101,7 @@ public class MonsterBoard extends GameObject {
             }
 
             enemyMonsters[i].setRotation(180);
-            Vector2 drawPos = new Vector2(150 + ((MonsterCard.cardWidth) * i), 150);
+            Vector2 drawPos = new Vector2(enemyMonsterArea.getX() + ((MonsterCard.cardWidth) * i)+ i*5, enemyMonsterArea.getY());
             enemyMonsters[i].setPosition(drawPos);
         }
     }
