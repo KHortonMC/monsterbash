@@ -41,8 +41,6 @@ public class MonsterBoard extends GameObject {
         for (int i = 0; i < playerMana.length; i++) {
             if (playerMana[i] == null) {
                 playerMana[i] = (ManaCard) manaDeck.drawCard();
-                playerMana[i].setVisible(true);
-                playerMana[i].setActive(true);
 
                 playerMana[i].setRotation(0);
                 Vector2 drawPos = new Vector2(playerManaArea.getX() + ((MonsterCard.cardWidth) * i) + i * 5, playerManaArea.getY());
@@ -57,8 +55,6 @@ public class MonsterBoard extends GameObject {
         for (int i = 0; i < playerMana.length; i++) {
             if (playerMana[i] != null && playerMana[i].isSelected()) {
                 manaDeck.discardCard(playerMana[i]);
-                playerMana[i].setVisible(false);
-                playerMana[i].setActive(false);
                 playerMana[i] = null;
             }
         }
@@ -68,8 +64,6 @@ public class MonsterBoard extends GameObject {
         for (int i = 0; i < enemyMana.length; i++) {
             if (enemyMana[i] == null) {
                 enemyMana[i] = (ManaCard) manaDeck.drawCard();
-                enemyMana[i].setVisible(true);
-                enemyMana[i].setActive(true);
 
                 enemyMana[i].setRotation(180);
                 Vector2 drawPos = new Vector2(enemyManaArea.getX() + ((MonsterCard.cardWidth) * i) + i * 5, enemyManaArea.getY());
@@ -85,8 +79,6 @@ public class MonsterBoard extends GameObject {
         for (int i = 0; i < draftMonsters.length; i++) {
             if (draftMonsters[i] == null) {
                 draftMonsters[i] = (MonsterCard) monsterDeck.drawCard();
-                draftMonsters[i].setVisible(true);
-                draftMonsters[i].setActive(true);
 
                 draftMonsters[i].setRotation(90);
                 Vector2 drawPos = new Vector2(draftMonsterArea.getX(), draftMonsterArea.getY() + ((MonsterCard.cardWidth) * i) + i * 5);
@@ -122,8 +114,6 @@ public class MonsterBoard extends GameObject {
         for (int i = 0; i < enemyMonsters.length; i++) {
             if (enemyMonsters[i] == null) {
                 enemyMonsters[i] = (MonsterCard) monsterDeck.drawCard();
-                enemyMonsters[i].setVisible(true);
-                enemyMonsters[i].setActive(true);
             }
 
             enemyMonsters[i].setRotation(180);

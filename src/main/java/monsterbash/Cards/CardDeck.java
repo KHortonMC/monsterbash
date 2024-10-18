@@ -14,10 +14,14 @@ public abstract class CardDeck {
     public GameCard drawCard() {
         GameCard retVal = cardDeck.getFirst();
         cardDeck.removeFirst();
+        retVal.setActive(true);
+        retVal.setVisible(true);
         return retVal;
     }
 
     public void discardCard(GameCard card) {
         cardDeck.addLast(card);
+        card.setActive(false);
+        card.setVisible(false);
     }
 }
