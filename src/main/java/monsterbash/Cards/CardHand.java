@@ -52,9 +52,9 @@ public class CardHand {
     }
 
     public void deselectAll() {
-        for (int i = 0; i < hand.length; i++) {
-            if (hand[i] != null) {
-                hand[i].setSelected(false);
+        for (GameCard gameCard : hand) {
+            if (gameCard != null) {
+                gameCard.setSelected(false);
             }
         }
     }

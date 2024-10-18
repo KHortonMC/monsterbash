@@ -57,12 +57,14 @@ public class MonsterBoard extends GameObject {
         MonsterCard card = (MonsterCard) draftHand.selectCard(random.nextInt(5));
         if (card != null) {
             if (enemyMana.selectCardValue(card.getStats().cost)) {
-                enemyMonsters.draftMonsters();
-                discardEnemyMana();
+                if (enemyMonsters.draftMonsters() != null) {
+                    discardEnemyMana();
+                }
             }
         }
         draftHand.deselectAll();
         enemyMana.deselectAll();
+        enemyMonsters.deselectAll();
     }
 
     public void update() {

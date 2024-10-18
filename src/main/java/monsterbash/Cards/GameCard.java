@@ -17,7 +17,7 @@ public abstract class GameCard extends GameObject {
     public void setRotation(double rotation) {this.rotation = rotation;}
     public double getRotation() {return rotation;}
 
-    double scale = 1;
+    double scale;
     public void setScale(double scale) {this.scale = scale;}
     public double getScale() {return scale;}
 
@@ -41,7 +41,7 @@ public abstract class GameCard extends GameObject {
         transparentButton.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
         transparentButton.setPrefWidth(cardWidth);
         transparentButton.setPrefHeight(cardHeight);
-        scale = 1.0;
+        setScale(1.0);
 
         transparentButton.setOnAction(e -> MonsterBash.handleButton(this));
 
@@ -108,7 +108,7 @@ public abstract class GameCard extends GameObject {
         gc.rotate(this.rotation);
         gc.translate(-GameCard.cardWidth / 2.0, -GameCard.cardHeight / 2.0);
 
-        gc.scale(this.scale, this.scale);
+        gc.scale(this.getScale(), this.getScale());
         // this is where our inherited types will fill in the contents
         fillContents(gc);
 

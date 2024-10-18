@@ -19,6 +19,7 @@ public class MonsterHand extends CardHand {
                         hand[i] = draftable.hand[j];
                         draftable.hand[j] = null;
 
+                        hand[i].setSelected(false);
                         hand[i].setRotation(this.rotation);
                         Vector2 drawPos = new Vector2(bounding.getX() + ((MonsterCard.cardWidth) * i) + i * 5, bounding.getY());
                         hand[i].setPosition(drawPos);

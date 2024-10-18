@@ -13,4 +13,5 @@ module com.monsterbash {
     opens monsterbash.Cards to javafx.fxml;
     exports monsterbash.Board;
     opens monsterbash.Board to javafx.fxml;
+    exports monsterbash.graphics;
 }
