@@ -29,23 +29,7 @@ public abstract class GameCard extends GameObject {
     static Vector2 horizontalPadding = new Vector2(20, 0);
     @Override
     public void setPosition(Vector2 position) {
-        if (isSelected()) {
-            if (getRotation() == 180) {
-                position = position.add(verticalPadding);
-            }
-            if (getRotation() == 90) {
-                position = position.subtract(horizontalPadding);
-            }
 
-            if (getRotation() == 270) {
-                position = position.add(horizontalPadding);
-            }
-
-            if (getRotation() == 0) {
-                position = position.subtract(verticalPadding);
-            }
-
-        }
         super.setPosition(position);
         transparentButton.setLayoutX(position.getX());
         transparentButton.setLayoutY(position.getY());
@@ -57,6 +41,7 @@ public abstract class GameCard extends GameObject {
         transparentButton.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
         transparentButton.setPrefWidth(cardWidth);
         transparentButton.setPrefHeight(cardHeight);
+        scale = 1.0;
 
         transparentButton.setOnAction(e -> {
             MonsterBash.handleButton(this);
@@ -69,6 +54,38 @@ public abstract class GameCard extends GameObject {
     boolean selected = false;
     public void toggleSelected() {
         selected = !selected;
+        if (isSelected()) {
+            if (getRotation() == 180) {
+                setPosition(this.getPosition().add(verticalPadding));
+            }
+            if (getRotation() == 90) {
+                setPosition(this.getPosition().subtract(horizontalPadding));
+            }
+
+            if (getRotation() == 270) {
+                setPosition(this.getPosition().add(horizontalPadding));
+            }
+
+            if (getRotation() == 0) {
+                setPosition(this.getPosition().subtract(verticalPadding));
+            }
+        } else {
+            if (getRotation() == 180) {
+                setPosition(this.getPosition().subtract(verticalPadding));
+            }
+            if (getRotation() == 90) {
+                setPosition(this.getPosition().add(horizontalPadding));
+            }
+
+            if (getRotation() == 270) {
+                setPosition(this.getPosition().subtract(horizontalPadding));
+            }
+
+            if (getRotation() == 0) {
+                setPosition(this.getPosition().add(verticalPadding));
+            }
+        }
+
     }
     public boolean isSelected() {return selected;}
 
@@ -85,6 +102,7 @@ public abstract class GameCard extends GameObject {
         gc.rotate(this.rotation);
         gc.translate(-GameCard.cardWidth / 2.0, -GameCard.cardHeight / 2.0);
 
+        gc.scale(this.scale, this.scale);
         // this is where our inherited types will fill in the contents
         fillContents(gc);
 

@@ -37,58 +37,85 @@ public class MonsterBoard extends GameObject {
         manaDeck.buildDeck();
     }
 
-    void updatePlayerMana() {
+    public boolean drawPlayerMana() {
         for (int i = 0; i < playerMana.length; i++) {
             if (playerMana[i] == null) {
                 playerMana[i] = (ManaCard) manaDeck.drawCard();
                 playerMana[i].setVisible(true);
                 playerMana[i].setActive(true);
+
+                playerMana[i].setRotation(0);
+                Vector2 drawPos = new Vector2(playerManaArea.getX() + ((MonsterCard.cardWidth) * i) + i * 5, playerManaArea.getY());
+                playerMana[i].setPosition(drawPos);
+                return true;
             }
-            playerMana[i].setRotation(0);
-            Vector2 drawPos = new Vector2(playerManaArea.getX() + ((MonsterCard.cardWidth) * i)+ i*5, playerManaArea.getY());
-            playerMana[i].setPosition(drawPos);
+        }
+        return false;
+    }
+
+    public void discardPlayerMana() {
+        for (int i = 0; i < playerMana.length; i++) {
+            if (playerMana[i] != null && playerMana[i].isSelected()) {
+                manaDeck.discardCard(playerMana[i]);
+                playerMana[i].setVisible(false);
+                playerMana[i].setActive(false);
+                playerMana[i] = null;
+            }
         }
     }
 
-    void updateEnemyMana() {
+    public boolean drawEnemyMana() {
         for (int i = 0; i < enemyMana.length; i++) {
             if (enemyMana[i] == null) {
                 enemyMana[i] = (ManaCard) manaDeck.drawCard();
                 enemyMana[i].setVisible(true);
                 enemyMana[i].setActive(true);
+
+                enemyMana[i].setRotation(180);
+                Vector2 drawPos = new Vector2(enemyManaArea.getX() + ((MonsterCard.cardWidth) * i) + i * 5, enemyManaArea.getY());
+                enemyMana[i].setPosition(drawPos);
+                return true;
             }
-            enemyMana[i].setRotation(180);
-            Vector2 drawPos = new Vector2(enemyManaArea.getX() + ((MonsterCard.cardWidth) * i)+ i*5, enemyManaArea.getY());
-            enemyMana[i].setPosition(drawPos);
         }
+        return false;
     }
 
-    void updateDraftMonsters() {
+    public boolean drawDraftMonster() {
+        // draft monsters is always full
         for (int i = 0; i < draftMonsters.length; i++) {
             if (draftMonsters[i] == null) {
                 draftMonsters[i] = (MonsterCard) monsterDeck.drawCard();
                 draftMonsters[i].setVisible(true);
                 draftMonsters[i].setActive(true);
-            }
 
-            draftMonsters[i].setRotation(90);
-            Vector2 drawPos = new Vector2(draftMonsterArea.getX(), draftMonsterArea.getY() + ((MonsterCard.cardWidth) * i) + i*5);
-            draftMonsters[i].setPosition(drawPos);
+                draftMonsters[i].setRotation(90);
+                Vector2 drawPos = new Vector2(draftMonsterArea.getX(), draftMonsterArea.getY() + ((MonsterCard.cardWidth) * i) + i * 5);
+                draftMonsters[i].setPosition(drawPos);
+                return true;
+            }
         }
+        return false;
     }
 
-    void updatePlayerMonsters() {
+    public boolean draftPlayerMonsters() {
+        boolean retValue = false;
         for (int i = 0; i < playerMonsters.length; i++) {
             if (playerMonsters[i] == null) {
-                playerMonsters[i] = (MonsterCard) monsterDeck.drawCard();
-                playerMonsters[i].setVisible(true);
-                playerMonsters[i].setActive(true);
-            }
+                // find a monster that's selected
+                for (int j = 0; j < draftMonsters.length; j++) {
+                    if (draftMonsters[j] != null && draftMonsters[j].isSelected()) {
+                        playerMonsters[i] = draftMonsters[j];
+                        draftMonsters[j] = null;
 
-            playerMonsters[i].setRotation(0);
-            Vector2 drawPos = new Vector2(playerMonsterArea.getX() + ((MonsterCard.cardWidth) * i)+ i*5, playerMonsterArea.getY());
-            playerMonsters[i].setPosition(drawPos);
+                        playerMonsters[i].setRotation(0);
+                        Vector2 drawPos = new Vector2(playerMonsterArea.getX() + ((MonsterCard.cardWidth) * i)+ i*5, playerMonsterArea.getY());
+                        playerMonsters[i].setPosition(drawPos);
+                        retValue = true;
+                    }
+                }
+            }
         }
+        return retValue;
     }
 
     void updateEnemyMonsters() {
@@ -106,11 +133,6 @@ public class MonsterBoard extends GameObject {
     }
 
     public void update() {
-        updateDraftMonsters();
-        updatePlayerMonsters();
-        updateEnemyMonsters();
-        updatePlayerMana();
-        updateEnemyMana();
     }
 
     public void draw(GraphicsContext gc) {

@@ -3,6 +3,7 @@ package monsterbash.Board;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import monsterbash.Cards.GameCard;
+import monsterbash.Main;
 import monsterbash.gameobject.GameObject;
 
 public class MonsterBash {
@@ -33,13 +34,35 @@ public class MonsterBash {
     public static final int fontSize = 10;
 
     MonsterBoard board = null;
+    Button draftButton = null;
 
     public MonsterBash() {
         board = new MonsterBoard();
+        setupNewGame();
+        draftButton = new Button("Draft Monster");
+        draftButton.setLayoutX(boardWidth * 0.8);
+        draftButton.setLayoutY(boardHeight * 0.9);
+        draftButton.setOnAction(e -> {
+            draftMonsters(draftButton);
+        });
+        Main.getRoot().getChildren().add(draftButton);
+    }
 
+    public void setupNewGame() {
+        for (int i = 0; i < 5; i++) {
+            board.drawPlayerMana();
+            board.drawEnemyMana();
+            board.drawDraftMonster();
+        }
+    }
+
+    public void draftMonsters(Button button) {
+        board.draftPlayerMonsters();
+        board.discardPlayerMana();
     }
 
     public void runGame() {
+
 
 
     }
@@ -48,6 +71,5 @@ public class MonsterBash {
         if (clickedObject instanceof GameCard) {
             ((GameCard) clickedObject).toggleSelected();
         }
-
     }
 }

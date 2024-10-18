@@ -17,7 +17,7 @@ public abstract class CardDeck {
         return retVal;
     }
 
-    void discard(GameCard card) {
+    public void discardCard(GameCard card) {
         cardDeck.addLast(card);
     }
 }
