@@ -17,10 +17,13 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     static Canvas canvas = null;
+    static Group root = null;
     static Vector2 screenDelta = null;
     public static double getWindowWidth() { return Main.canvas.getWidth(); }
     public static double getWindowHeight() { return Main.canvas.getHeight(); }
     public static Vector2 getScreenDelta() { return Main.screenDelta; }
+    public static Group getRoot() { return root; }
+    MonsterBash monsterBash;
 
     // this start method came from online documents about JavaFX
     @Override
@@ -31,22 +34,22 @@ public class Main extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         // Create a Group to hold the Canvas
-        Group root = new Group();
-        root.getChildren().add(canvas);
+        Main.root = new Group();
+        Main.root.getChildren().add(canvas);
 
         // chatGPT used for a text area
         TextArea textArea = new TextArea();
         textArea.setOpacity(0);
         textArea.setOnKeyPressed(this::handleKeyPress);
         textArea.setOnKeyReleased(this::handleKeyRelease);
-        root.getChildren().add(textArea);
+        Main.root.getChildren().add(textArea);
 
         // Set up the Scene
         Scene scene = new Scene(root, MonsterBash.boardWidth, MonsterBash.boardHeight);
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        MonsterBash.setupGame();
+        monsterBash = new MonsterBash();
 
         AnimationTimer gameLoop = new AnimationTimer() {
             @Override
@@ -105,6 +108,7 @@ public class Main extends Application {
     }
 
     private void update() {
+        monsterBash.runGame();
         GameObject.updateAll();
     }
 

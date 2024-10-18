@@ -5,6 +5,7 @@ module com.monsterbash.monsterbash {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires java.smartcardio;
+    requires java.desktop;
 
     opens monsterbash to javafx.fxml;
     exports monsterbash;

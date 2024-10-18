@@ -16,7 +16,6 @@ public class MonsterBoard extends GameObject {
     static Rect enemyManaArea = new Rect(MonsterBash.boardWidth*0.05, MonsterBash.boardHeight * 0.0, MonsterBash.boardWidth * 0.7, MonsterBash.boardHeight*0.2);
     static Rect draftMonsterArea = new Rect(MonsterBash.boardWidth*0.85, MonsterBash.boardHeight * 0.1, MonsterBash.boardWidth * 0.2, MonsterBash.boardHeight*0.8);
 
-
     MonsterCard[] draftMonsters = new MonsterCard[5];
     MonsterCard[] playerMonsters = new MonsterCard[5];
     MonsterCard[] enemyMonsters = new MonsterCard[5];
