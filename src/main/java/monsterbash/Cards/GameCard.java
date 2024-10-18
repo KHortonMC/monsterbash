@@ -23,7 +23,7 @@ public abstract class GameCard extends GameObject {
 
     abstract void fillContents(GraphicsContext gc);
 
-    Button transparentButton = null;
+    Button transparentButton;
 
     static Vector2 verticalPadding = new Vector2(0, 20);
     static Vector2 horizontalPadding = new Vector2(20, 0);
@@ -43,9 +43,7 @@ public abstract class GameCard extends GameObject {
         transparentButton.setPrefHeight(cardHeight);
         scale = 1.0;
 
-        transparentButton.setOnAction(e -> {
-            MonsterBash.handleButton(this);
-        });
+        transparentButton.setOnAction(e -> MonsterBash.handleButton(this));
 
         Main.getRoot().getChildren().add(transparentButton);
     }

@@ -3,5 +3,5 @@ package monsterbash.graphics;
 import javafx.scene.canvas.GraphicsContext;
 
 public interface Drawable {
-    public void draw(GraphicsContext gc);
+    void draw(GraphicsContext gc);
 }

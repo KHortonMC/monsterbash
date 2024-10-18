@@ -7,7 +7,7 @@ public abstract class CardDeck {
 
     public abstract void buildDeck();
 
-    void shuffle() {
+    public void shuffle() {
         // TODO: some shuffle logic
     }
 

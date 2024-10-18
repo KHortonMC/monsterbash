@@ -10,9 +10,9 @@ import monsterbash.Board.MonsterBash;
 import monsterbash.Board.MonsterStats;
 
 public class MonsterCard extends GameCard {
-    MonsterStats stats = null;
-    String name = null;
-    Image image = null;
+    MonsterStats stats;
+    String name;
+    Image image;
 
     // TODO: add a superpower label!
     static final double borderPadding = 8;
@@ -29,6 +29,8 @@ public class MonsterCard extends GameCard {
     public void update() {
         super.update();
     }
+
+    public MonsterStats getStats() {return stats;}
 
     void fillContents(GraphicsContext gc) {
         gc.setFill(Color.GREEN);

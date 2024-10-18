@@ -1,4 +1,4 @@
-module com.monsterbash.monsterbash {
+module com.monsterbash {
     requires javafx.controls;
     requires javafx.fxml;
 

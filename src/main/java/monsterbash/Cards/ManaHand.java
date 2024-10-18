@@ -10,8 +10,7 @@ public class ManaHand extends CardHand {
     public boolean selectCardValue(int targetValue) {
         int curValue = 0;
         for (GameCard c : hand) {
-            if (c instanceof ManaCard) {
-                ManaCard mc = (ManaCard) c;
+            if (c instanceof ManaCard mc) {
                 mc.setSelected(true);
                 // TODO run logic
                 curValue++;

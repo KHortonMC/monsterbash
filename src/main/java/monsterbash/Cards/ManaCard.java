@@ -16,8 +16,8 @@ public class ManaCard extends GameCard {
         MAGIC,
     }
 
-    Suit suit = Suit.WILD;
-    int value = 1;
+    Suit suit;
+    int value;
 
     public ManaCard(int value, Suit suit) {
         super();
@@ -27,8 +27,8 @@ public class ManaCard extends GameCard {
 
     @Override
     public String toString() {
-        String suit = null;
-        String value = null;
+        String suit;
+        String value;
 
         suit = switch (this.suit) {
             case Suit.MAGIC -> "᳃";

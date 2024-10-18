@@ -1,10 +1,10 @@
 package monsterbash.graphics;
 
 public final class Rect {
-    double x = 0.0;
-    double y = 0.0;
-    double w = 0.0;
-    double h = 0.0;
+    double x;
+    double y;
+    double w;
+    double h;
 
     public Rect(double x, double y, double w, double h) {
         this.x = x;

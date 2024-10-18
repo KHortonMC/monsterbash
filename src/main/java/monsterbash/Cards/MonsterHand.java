@@ -4,7 +4,7 @@ import monsterbash.graphics.Rect;
 import monsterbash.graphics.Vector2;
 
 public class MonsterHand extends CardHand {
-    CardHand draftable = null;
+    CardHand draftable;
     public MonsterHand(CardDeck deck, CardHand draftable, int handSize, Rect bounding, double rotation) {
         super(deck, handSize, bounding, rotation);
         this.draftable = draftable;

@@ -5,6 +5,8 @@ import monsterbash.Cards.*;
 import monsterbash.gameobject.GameObject;
 import monsterbash.graphics.Rect;
 
+import java.util.Random;
+
 public class MonsterBoard extends GameObject {
     static Rect playerMonsterArea = new Rect(MonsterBash.boardWidth*0.1, MonsterBash.boardHeight * 0.55, MonsterBash.boardWidth * 0.7, MonsterBash.boardHeight*0.2);
     static Rect enemyMonsterArea = new Rect(MonsterBash.boardWidth*0.1, MonsterBash.boardHeight * 0.22, MonsterBash.boardWidth * 0.7, MonsterBash.boardHeight*0.2);
@@ -12,25 +14,30 @@ public class MonsterBoard extends GameObject {
     static Rect enemyManaArea = new Rect(MonsterBash.boardWidth*0.05, MonsterBash.boardHeight * 0.0, MonsterBash.boardWidth * 0.7, MonsterBash.boardHeight*0.2);
     static Rect draftMonsterArea = new Rect(MonsterBash.boardWidth*0.85, MonsterBash.boardHeight * 0.1, MonsterBash.boardWidth * 0.2, MonsterBash.boardHeight*0.8);
 
-    ManaHand playerMana = null;
-    ManaHand enemyMana = null;
+    ManaHand playerMana;
+    ManaHand enemyMana;
 
-    MonsterHand playerMonsters = null;
-    MonsterHand enemyMonsters = null;
-    CardHand draftHand = null;
+    MonsterHand playerMonsters;
+    MonsterHand enemyMonsters;
+    CardHand draftHand;
 
-    MonsterDeck monsterDeck = null;
-    ManaDeck manaDeck = null;
+    MonsterDeck monsterDeck;
+    ManaDeck manaDeck;
+    Random random;
 
     public MonsterBoard() {
         this.setVisible(false); // TODO, make this true and draw a board
         this.setActive(true);
 
+        random = new Random();
+
         monsterDeck = new MonsterDeck();
         monsterDeck.buildDeck();
+        monsterDeck.shuffle();
 
         manaDeck = new ManaDeck();
         manaDeck.buildDeck();
+        manaDeck.shuffle();
 
         playerMana = new ManaHand(manaDeck, 7, playerManaArea, 0);
         enemyMana = new ManaHand(manaDeck, 7, enemyManaArea, 180);
@@ -39,24 +46,27 @@ public class MonsterBoard extends GameObject {
         enemyMonsters = new MonsterHand(monsterDeck, draftHand,5, enemyMonsterArea, 180);
     }
 
-    public GameCard drawPlayerMana() { return playerMana.drawCard(); }
+    public void drawPlayerMana() { playerMana.drawCard(); }
     public void discardPlayerMana() { playerMana.discardCard(); }
-    public GameCard drawEnemyMana() { return enemyMana.drawCard(); }
+    public void drawEnemyMana() { enemyMana.drawCard(); }
     public void discardEnemyMana() { enemyMana.discardCard(); }
-    public GameCard drawDraftMonster() { return draftHand.drawCard(); }
-    public GameCard draftPlayerMonsters() { return playerMonsters.draftMonsters(); }
+    public void drawDraftMonster() { draftHand.drawCard(); }
+    public void draftPlayerMonsters() { playerMonsters.draftMonsters(); }
 
     public void selectEnemyMana() {
-        enemyMana.selectCardValue(3);
-    }
-
-    public void draftEnemyMonsters() {
-        draftHand.selectCard(3);
-        enemyMonsters.draftMonsters();
-        discardEnemyMana();
+        MonsterCard card = (MonsterCard) draftHand.selectCard(random.nextInt(5));
+        if (card != null) {
+            if (enemyMana.selectCardValue(card.getStats().cost)) {
+                enemyMonsters.draftMonsters();
+                discardEnemyMana();
+            }
+        }
+        draftHand.deselectAll();
+        enemyMana.deselectAll();
     }
 
     public void update() {
+        super.update();
     }
 
     public void draw(GraphicsContext gc) {

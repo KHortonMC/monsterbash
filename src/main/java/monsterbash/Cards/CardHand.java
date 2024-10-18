@@ -4,10 +4,10 @@ import monsterbash.graphics.Rect;
 import monsterbash.graphics.Vector2;
 
 public class CardHand {
-    GameCard[] hand = null;
-    Rect bounding = null;
-    double rotation = 0;
-    CardDeck deck = null;
+    GameCard[] hand;
+    Rect bounding;
+    double rotation;
+    CardDeck deck;
 
     public CardHand(CardDeck deck, int handSize, Rect bounding, double rotation) {
         this.deck = deck;
@@ -21,7 +21,7 @@ public class CardHand {
             if (hand[i] == null) {
                 hand[i] = deck.drawCard();
                 hand[i].setRotation(rotation);
-                Vector2 drawPos = null;
+                Vector2 drawPos;
                 if (rotation == 90 || rotation == 270) {
                     drawPos = new Vector2(bounding.getX(), bounding.getY() + ((GameCard.cardWidth) * i) + i * 5);
                 } else {
@@ -43,9 +43,19 @@ public class CardHand {
         }
     }
 
-    public void selectCard(int i) {
+    public GameCard selectCard(int i) {
         if (hand[i] != null) {
             hand[i].setSelected(true);
+            return hand[i];
+        }
+        return null;
+    }
+
+    public void deselectAll() {
+        for (int i = 0; i < hand.length; i++) {
+            if (hand[i] != null) {
+                hand[i].setSelected(false);
+            }
         }
     }
 }

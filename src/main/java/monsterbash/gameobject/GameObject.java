@@ -40,7 +40,7 @@ public class GameObject implements Drawable {
 
     public static void updateAll() {
         for (GameObject o : objects) {
-            if (o.isActive) {
+            if (o.getActive()) {
                 o.update();
             }
         }
@@ -48,7 +48,7 @@ public class GameObject implements Drawable {
 
     public static void drawAll(GraphicsContext gc) {
         for (GameObject o : objects) {
-            if (o.isVisible) {
+            if (o.getVisible()) {
                 o.draw(gc);
             }
         }
