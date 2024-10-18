@@ -61,11 +61,7 @@ public class MonsterBash {
         board.discardPlayerMana();
     }
 
-    public void runGame() {
-
-
-
-    }
+    public void runGame() {}
 
     public static void handleButton(Object clickedObject) {
         if (clickedObject instanceof GameCard) {
