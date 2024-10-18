@@ -12,8 +12,8 @@ public class MonsterBoard extends GameObject {
     static Rect enemyManaArea = new Rect(MonsterBash.boardWidth*0.05, MonsterBash.boardHeight * 0.0, MonsterBash.boardWidth * 0.7, MonsterBash.boardHeight*0.2);
     static Rect draftMonsterArea = new Rect(MonsterBash.boardWidth*0.85, MonsterBash.boardHeight * 0.1, MonsterBash.boardWidth * 0.2, MonsterBash.boardHeight*0.8);
 
-    CardHand playerMana = null;
-    CardHand enemyMana = null;
+    ManaHand playerMana = null;
+    ManaHand enemyMana = null;
 
     MonsterHand playerMonsters = null;
     MonsterHand enemyMonsters = null;
@@ -32,8 +32,8 @@ public class MonsterBoard extends GameObject {
         manaDeck = new ManaDeck();
         manaDeck.buildDeck();
 
-        playerMana = new CardHand(manaDeck, 7, playerManaArea, 0);
-        enemyMana = new CardHand(manaDeck, 7, enemyManaArea, 180);
+        playerMana = new ManaHand(manaDeck, 7, playerManaArea, 0);
+        enemyMana = new ManaHand(manaDeck, 7, enemyManaArea, 180);
         draftHand = new CardHand(monsterDeck, 5, draftMonsterArea, 90);
         playerMonsters = new MonsterHand(monsterDeck, draftHand, 5, playerMonsterArea, 0);
         enemyMonsters = new MonsterHand(monsterDeck, draftHand,5, enemyMonsterArea, 180);
@@ -44,8 +44,17 @@ public class MonsterBoard extends GameObject {
     public GameCard drawEnemyMana() { return enemyMana.drawCard(); }
     public void discardEnemyMana() { enemyMana.discardCard(); }
     public GameCard drawDraftMonster() { return draftHand.drawCard(); }
-
     public GameCard draftPlayerMonsters() { return playerMonsters.draftMonsters(); }
+
+    public void selectEnemyMana() {
+        enemyMana.selectCardValue(3);
+    }
+
+    public void draftEnemyMonsters() {
+        draftHand.selectCard(3);
+        enemyMonsters.draftMonsters();
+        discardEnemyMana();
+    }
 
     public void update() {
     }

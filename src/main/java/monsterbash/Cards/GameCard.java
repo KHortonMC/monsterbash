@@ -52,6 +52,14 @@ public abstract class GameCard extends GameObject {
 
 
     boolean selected = false;
+    public void setSelected(boolean value) {
+        if (!selected && value) {
+            toggleSelected();
+        }
+        if (selected && !value) {
+            toggleSelected();
+        }
+    }
     public void toggleSelected() {
         selected = !selected;
         if (isSelected()) {

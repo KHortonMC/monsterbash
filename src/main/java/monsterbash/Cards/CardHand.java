@@ -42,4 +42,10 @@ public class CardHand {
             }
         }
     }
+
+    public void selectCard(int i) {
+        if (hand[i] != null) {
+            hand[i].setSelected(true);
+        }
+    }
 }
