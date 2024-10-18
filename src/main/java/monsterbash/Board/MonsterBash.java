@@ -69,15 +69,11 @@ public class MonsterBash {
     }
 
     public void doEnemyTurn() {
-        for (int i = 0; i < 5; i++) {
-            board.drawDraftMonster();
-        }
+        board.fillDraftMonsters();
         board.drawEnemyMana();
         board.selectEnemyMana();
         // TODO: attack logic
-        for (int i = 0; i < 5; i++) {
-            board.drawDraftMonster();
-        }
+        board.fillDraftMonsters();
     }
 
     public void runGame() {}

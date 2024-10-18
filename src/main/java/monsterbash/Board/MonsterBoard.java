@@ -50,7 +50,7 @@ public class MonsterBoard extends GameObject {
     public void discardPlayerMana() { playerMana.discardCard(); }
     public void drawEnemyMana() { enemyMana.drawCard(); }
     public void discardEnemyMana() { enemyMana.discardCard(); }
-    public void drawDraftMonster() { draftHand.drawCard(); }
+    public GameCard drawDraftMonster() { return draftHand.drawCard(); }
     public void draftPlayerMonsters() { playerMonsters.draftMonsters(); }
 
     public void selectEnemyMana() {
@@ -65,6 +65,13 @@ public class MonsterBoard extends GameObject {
         draftHand.deselectAll();
         enemyMana.deselectAll();
         enemyMonsters.deselectAll();
+    }
+
+    public void fillDraftMonsters() {
+        GameCard card;
+        do {
+            card = drawDraftMonster();
+        } while (card != null);
     }
 
     public void update() {
